@@ -1,0 +1,173 @@
+mysql> select * from bank_customer;
++-----------+------------------------+--------------+
+| cust_name | cust_mailID            | cust_balance |
++-----------+------------------------+--------------+
+| shreya    | shreyasuryawanshigmail |        30000 |
+| shriya    | shriyahelande          |        40000 |
+| shraddha  | shraddhaalhatgmail     |        50000 |
+| sakshi    | sakshibhaleraogmail    |        20000 |
+| sangam    | sangamswamigmail       |        10000 |
+| suraj     | surajsakhregmail       |        20000 |
+| siddhant  | siddhantjadhavgmail    |        20000 |
+| sanket    | sanketdeshmukhgmail    |        40000 |
+| rohini    | rohinibhordegmail      |        30000 |
+| amol      | amolbhaleraogmail      |         6000 |
+| aniket    | aniketbhaleraogmail    |        40000 |
+| prachi    | prachibhaleraogmail    |        48000 |
++-----------+------------------------+--------------+
+12 rows in set (0.00 sec)
+
+mysql> select cust_name from bank_customer;
++-----------+
+| cust_name |
++-----------+
+| shreya    |
+| shriya    |
+| shraddha  |
+| sakshi    |
+| sangam    |
+| suraj     |
+| siddhant  |
+| sanket    |
+| rohini    |
+| amol      |
+| aniket    |
+| prachi    |
++-----------+
+12 rows in set (0.00 sec)
+
+mysql> select cust_name,cust_mailID from bank_customer;
++-----------+------------------------+
+| cust_name | cust_mailID            |
++-----------+------------------------+
+| shreya    | shreyasuryawanshigmail |
+| shriya    | shriyahelande          |
+| shraddha  | shraddhaalhatgmail     |
+| sakshi    | sakshibhaleraogmail    |
+| sangam    | sangamswamigmail       |
+| suraj     | surajsakhregmail       |
+| siddhant  | siddhantjadhavgmail    |
+| sanket    | sanketdeshmukhgmail    |
+| rohini    | rohinibhordegmail      |
+| amol      | amolbhaleraogmail      |
+| aniket    | aniketbhaleraogmail    |
+| prachi    | prachibhaleraogmail    |
++-----------+------------------------+
+12 rows in set (0.00 sec)
+
+mysql> select * from bank_customer where cust_name='shraddha';
++-----------+--------------------+--------------+
+| cust_name | cust_mailID        | cust_balance |
++-----------+--------------------+--------------+
+| shraddha  | shraddhaalhatgmail |        50000 |
++-----------+--------------------+--------------+
+1 row in set (0.08 sec)
+
+mysql> start transaction;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> update bank_customer set cust_balance = cust_balance-500 where cust_name='shraddha';
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from bank_customer;
++-----------+------------------------+--------------+
+| cust_name | cust_mailID            | cust_balance |
++-----------+------------------------+--------------+
+| shreya    | shreyasuryawanshigmail |        30000 |
+| shriya    | shriyahelande          |        40000 |
+| shraddha  | shraddhaalhatgmail     |        49500 |
+| sakshi    | sakshibhaleraogmail    |        20000 |
+| sangam    | sangamswamigmail       |        10000 |
+| suraj     | surajsakhregmail       |        20000 |
+| siddhant  | siddhantjadhavgmail    |        20000 |
+| sanket    | sanketdeshmukhgmail    |        40000 |
+| rohini    | rohinibhordegmail      |        30000 |
+| amol      | amolbhaleraogmail      |         6000 |
+| aniket    | aniketbhaleraogmail    |        40000 |
+| prachi    | prachibhaleraogmail    |        48000 |
++-----------+------------------------+--------------+
+12 rows in set (0.00 sec)
+
+mysql> update bank_customer set cust_balance = cust_balance+7000 where cust_name='shreya';
+Query OK, 1 row affected (0.23 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+mysql> select * from bank_customer where cust_name='shreya';
++-----------+------------------------+--------------+
+| cust_name | cust_mailID            | cust_balance |
++-----------+------------------------+--------------+
+| shreya    | shreyasuryawanshigmail |        37000 |
++-----------+------------------------+--------------+
+1 row in set (0.00 sec)
+
+mysql> update bank_customer set cust_balance= cust_balance+30000 where cust_name='sangam';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update bank_customer set cust_balance= cust_balance-30000 where cust_name='shreya';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+mysql> select * from bank_customer where cust_name='sangam';
++-----------+------------------+--------------+
+| cust_name | cust_mailID      | cust_balance |
++-----------+------------------+--------------+
+| sangam    | sangamswamigmail |        40000 |
++-----------+------------------+--------------+
+1 row in set (0.00 sec)
+
+mysql> select * from bank_customer where cust_name='shreya';
++-----------+------------------------+--------------+
+| cust_name | cust_mailID            | cust_balance |
++-----------+------------------------+--------------+
+| shreya    | shreyasuryawanshigmail |         7000 |
++-----------+------------------------+--------------+
+1 row in set (0.00 sec)
+
+mysql> select cust_name,cust_balance from bank_customer where cust_name='shreya';
++-----------+--------------+
+| cust_name | cust_balance |
++-----------+--------------+
+| shreya    |         7000 |
++-----------+--------------+
+1 row in set (0.00 sec)
+mysql> update bank_customer set cust_balance=cust_balance+10000 where cust_name='amol';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+mysql> update bank_customer set cust_balance=cust_balance-1000 where cust_name='shreya';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+mysql> select * from bank_customer where cust_name='shreya';
++-----------+------------------------+--------------+
+| cust_name | cust_mailID            | cust_balance |
++-----------+------------------------+--------------+
+| shreya    | shreyasuryawanshigmail |         6000 |
++-----------+------------------------+--------------+
+1 row in set (0.00 sec)
+
+mysql> select * from bank_customer where cust_name='amol';
++-----------+-------------------+--------------+
+| cust_name | cust_mailID       | cust_balance |
++-----------+-------------------+--------------+
+| amol      | amolbhaleraogmail |        16000 |
++-----------+-------------------+--------------+
+1 row in set (0.00 sec)
+
+
+mysql> select * from bank_customer;
++-----------+------------------------+--------------+
+| cust_name | cust_mailID            | cust_balance |
++-----------+------------------------+--------------+
+| shreya    | shreyasuryawanshigmail |         6000 |
+| shriya    | shriyahelande          |        40000 |
+| shraddha  | shraddhaalhatgmail     |        49500 |
+| sakshi    | sakshibhaleraogmail    |        20000 |
+| sangam    | sangamswamigmail       |        40000 |
+| suraj     | surajsakhregmail       |        20000 |
+| siddhant  | siddhantjadhavgmail    |        20000 |
+| sanket    | sanketdeshmukhgmail    |        40000 |
+| rohini    | rohinibhordegmail      |        30000 |
+| amol      | amolbhaleraogmail      |        16000 |
+| aniket    | aniketbhaleraogmail    |        40000 |
+| prachi    | prachibhaleraogmail    |        48000 |
++-----------+------------------------+--------------+
+12 rows in set (0.00 sec)
